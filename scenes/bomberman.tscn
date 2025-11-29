@@ -1,0 +1,150 @@
+[gd_scene load_steps=17 format=3 uid="uid://t7qhpnnyuf68"]
+
+[ext_resource type="Texture2D" uid="uid://bkb8lrlyfdplu" path="res://assets/bomberman.png" id="1_k04nm"]
+[ext_resource type="Script" uid="uid://obem5ahj5mtj" path="res://scripts/bomberman.gd" id="1_scx5t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_77eoc"]
+size = Vector2(12.3082, 12.3082)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scx5t"]
+atlas = ExtResource("1_k04nm")
+region = Rect2(0, 23, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpmsv"]
+atlas = ExtResource("1_k04nm")
+region = Rect2(0, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22e5q"]
+atlas = ExtResource("1_k04nm")
+region = Rect2(16, 23, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uru3q"]
+atlas = ExtResource("1_k04nm")
+region = Rect2(0, 23, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5aht"]
+atlas = ExtResource("1_k04nm")
+region = Rect2(32, 23, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10bmw"]
+atlas = ExtResource("1_k04nm")
+region = Rect2(16, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wa8b"]
+atlas = ExtResource("1_k04nm")
+region = Rect2(0, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7my1r"]
+atlas = ExtResource("1_k04nm")
+region = Rect2(32, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kei05"]
+atlas = ExtResource("1_k04nm")
+region = Rect2(16, 46, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_runhc"]
+atlas = ExtResource("1_k04nm")
+region = Rect2(0, 46, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jx14w"]
+atlas = ExtResource("1_k04nm")
+region = Rect2(32, 46, 16, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k04nm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scx5t")
+}],
+"loop": true,
+"name": &"idle_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gpmsv")
+}],
+"loop": true,
+"name": &"idle_front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_22e5q")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_uru3q")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_b5aht")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_uru3q")
+}],
+"loop": true,
+"name": &"walk_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_10bmw")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_6wa8b")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_7my1r")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_6wa8b")
+}],
+"loop": true,
+"name": &"walk_front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_kei05")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_runhc")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_jx14w")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_runhc")
+}],
+"loop": true,
+"name": &"walk_side",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_scx5t"]
+size = Vector2(13.9378, 14.2018)
+
+[node name="Bomberman" type="CharacterBody2D"]
+z_index = 99
+scale = Vector2(2.11241, 2.11241)
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_scx5t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.473393, 3.78714)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_77eoc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_k04nm")
+animation = &"idle_front"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.473393, 3.78714)
+scale = Vector2(1.01894, 0.999999)
+shape = SubResource("RectangleShape2D_scx5t")

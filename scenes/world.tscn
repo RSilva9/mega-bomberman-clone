@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=4 uid="uid://eccedii7dadp"]
+
+[ext_resource type="PackedScene" uid="uid://t7qhpnnyuf68" path="res://scenes/bomberman.tscn" id="1_nnsk1"]
+[ext_resource type="Texture2D" uid="uid://bpb4nsy0cgr1" path="res://assets/blocks.png" id="2_rwgxs"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4wyf3"]
+texture = ExtResource("2_rwgxs")
+0:0/size_in_atlas = Vector2i(2, 2)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -8, -8, -16, 8, -16, 16, -8, 16, 8, 8, 16, -8, 16, -16, 8)
+2:0/size_in_atlas = Vector2i(2, 2)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -8, -8, -16, 8, -16, 16, -8, 16, 8, 8, 16, -8, 16, -16, 8)
+2:0/0/custom_data_0 = true
+
+[sub_resource type="TileSet" id="TileSet_k0juu"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
+custom_data_layer_0/name = "breakable"
+custom_data_layer_0/type = 1
+sources/0 = SubResource("TileSetAtlasSource_4wyf3")
+
+[node name="World" type="Node2D"]
+
+[node name="Bomberman" parent="." instance=ExtResource("1_nnsk1")]
+position = Vector2(16, 8)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-12, 13)
+zoom = Vector2(2.21, 2.21)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+show_behind_parent = true
+color = Color(0.278976, 0.136797, 0.0518878, 1)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+texture_filter = 1
+tile_map_data = PackedByteArray("AAD6//3/AAAAAAAAAAD8//3/AAAAAAAAAAD+//3/AAAAAAAAAAAAAP3/AAAAAAAAAAACAP3/AAAAAAAAAAAEAP3/AAAAAAAAAAAGAP3/AAAAAAAAAAAGAP//AAAAAAAAAAAEAP//AAAAAAAAAAACAP//AAAAAAAAAAD+////AAAAAAAAAAD8////AAAAAAAAAAD6////AAAAAAAAAAD6/wEAAAAAAAAAAAD8/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAACAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAAGAAEAAAAAAAAAAAAGAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAACAAMAAAAAAAAAAAAAAAMAAAAAAAAAAAD+/wMAAAAAAAAAAAD8/wMAAAAAAAAAAAD6/wMAAAAAAAAAAAD4//3/AAAAAAAAAAD4////AAAAAAAAAAD4/wEAAAAAAAAAAAD4/wMAAAAAAAAAAAD7/wIAAAACAAAAAAD9/wMAAAACAAAAAAD5/wAAAAACAAAAAAD6/wAAAAACAAAAAAD7//7/AAACAAAAAAADAP3/AAACAAAAAAAFAAAAAAACAAAAAAD///3/AAACAAAAAAAAAAIAAAACAAAAAAACAAAAAAACAAAAAAAFAAMAAAACAAAAAAAGAP7/AAACAAAAAAAFAP7/AAACAAAAAAD+/wAAAAACAAAAAAAAAAEAAAAAAAAAAAAAAP//AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_k0juu")

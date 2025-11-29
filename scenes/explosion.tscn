@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6blc6bcmbbx1"]
+
+[ext_resource type="Texture2D" uid="uid://ucmvxk88ug8n" path="res://assets/explosion.png" id="1_17npe"]
+[ext_resource type="Script" uid="uid://bc1iu7dqo5tgf" path="res://scripts/explosion.gd" id="1_nfeox"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfeox"]
+atlas = ExtResource("1_17npe")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nfeox"]
+size = Vector2(32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aw4cw"]
+atlas = ExtResource("1_17npe")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17npe"]
+atlas = ExtResource("1_17npe")
+region = Rect2(64, 0, 32, 32)
+
+[node name="Explosion" type="Node2D"]
+script = ExtResource("1_nfeox")
+
+[node name="Center" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(16, 16)
+texture = SubResource("AtlasTexture_nfeox")
+
+[node name="Area2D" type="Area2D" parent="Center"]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Center/Area2D"]
+shape = SubResource("RectangleShape2D_nfeox")
+
+[node name="Middle" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(16, 16)
+texture = SubResource("AtlasTexture_aw4cw")
+
+[node name="Area2D" type="Area2D" parent="Middle"]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Middle/Area2D"]
+shape = SubResource("RectangleShape2D_nfeox")
+
+[node name="End" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(16, 16)
+texture = SubResource("AtlasTexture_17npe")
+
+[node name="Area2D" type="Area2D" parent="End"]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="End/Area2D"]
+shape = SubResource("RectangleShape2D_nfeox")
+
+[connection signal="body_entered" from="Center/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Middle/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="End/Area2D" to="." method="_on_area_2d_body_entered"]
